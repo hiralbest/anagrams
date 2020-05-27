@@ -19,7 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AnagramControllerTest {
+class AnagramControllerTest {
 
     @LocalServerPort
     private int port;
@@ -30,7 +30,7 @@ public class AnagramControllerTest {
 
     @Test
     @DisplayName("Returns true for valid anagram strings and valid payload")
-    private void isAnagram_when_valid_anagram_strings_thenReturns_true() throws Exception {
+    void isAnagram_when_valid_anagram_strings_thenReturns_true() throws Exception {
 
         JSONObject responseBody = new JSONObject().put("areAnagrams", true);
 
@@ -42,7 +42,7 @@ public class AnagramControllerTest {
 
     @Test
     @DisplayName("Returns false for invalid anagram strings and valid payload")
-    private void isAnagram_when_invalid_anagram_strings_thenReturns_false() throws Exception {
+    void isAnagram_when_invalid_anagram_strings_thenReturns_false() throws Exception {
 
         JSONObject responseBody = new JSONObject().put("areAnagrams", false);
 
@@ -54,13 +54,13 @@ public class AnagramControllerTest {
 
     @Test
     @DisplayName("Returns 400 for bad request")
-    private void isAnagram_when_bad_request_thenReturns_400() throws Exception {
+    void isAnagram_when_bad_request_thenReturns_400() throws Exception {
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
         ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/api/anagrams/a/a"), HttpMethod.GET, entity, String.class);
         Assertions.assertEquals(400, response.getStatusCodeValue(), "Status code is 400");
     }
 
-    private String createURLWithPort(String uri) {
+    String createURLWithPort(String uri) {
         return "http://localhost:" + port + uri;
     }
 }
