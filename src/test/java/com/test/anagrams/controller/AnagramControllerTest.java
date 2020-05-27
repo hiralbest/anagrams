@@ -38,24 +38,24 @@ class AnagramControllerTest {
     @DisplayName("isAnagram Returns true for valid anagram strings and valid payload")
     void isAnagram_when_valid_anagram_strings_thenReturns_true() throws Exception {
 
-        JSONObject responseBody = new JSONObject().put("areAnagrams", true);
+        JSONObject expectedBody = new JSONObject().put("areAnagrams", true);
 
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
         ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/anagrams/abc/cab"), HttpMethod.GET, entity, String.class);
         Assertions.assertEquals(200, response.getStatusCodeValue(), "Status code is 200");
-        Assertions.assertEquals(responseBody.toString(), response.getBody(), "response body is matching");
+        Assertions.assertEquals(expectedBody.toString(), response.getBody(), "response body is matching");
     }
 
     @Test
     @DisplayName("isAnagram Returns false for invalid anagram strings and valid payload")
     void isAnagram_when_invalid_anagram_strings_thenReturns_false() throws Exception {
 
-        JSONObject responseBody = new JSONObject().put("areAnagrams", false);
+        JSONObject expectedBody = new JSONObject().put("areAnagrams", false);
 
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
         ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/anagrams/abc/abd"), HttpMethod.GET, entity, String.class);
         Assertions.assertEquals(200, response.getStatusCodeValue(), "Status code is 200");
-        Assertions.assertEquals(responseBody.toString(), response.getBody(), "response body is matching");
+        Assertions.assertEquals(expectedBody.toString(), response.getBody(), "response body is matching");
     }
 
     @Test
