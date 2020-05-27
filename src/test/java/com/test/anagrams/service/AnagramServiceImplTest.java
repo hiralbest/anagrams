@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AnagramServiceImplTest {
 
-    AnagramService anagramService;
+    private AnagramService anagramService;
 
     @BeforeEach
     void setUp() {
