@@ -1,11 +1,11 @@
 package com.test.anagrams.service;
 
-import java.util.List;
+import java.util.Set;
 
 public interface AnagramService {
 
     boolean isAnagram(String s1, String s2);
 
-    List<String> getAllAnagramStrings(String s1);
+    Set<String> getAllAnagramStrings(String s1);
 
 }

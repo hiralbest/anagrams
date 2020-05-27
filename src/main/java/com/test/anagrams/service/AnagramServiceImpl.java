@@ -4,7 +4,8 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class AnagramServiceImpl implements AnagramService {
@@ -12,6 +13,7 @@ public class AnagramServiceImpl implements AnagramService {
     /**
      * Check if 2 strings are anagrams
      * Reference: https://www.baeldung.com/java-strings-anagrams
+     *
      * @param s1
      * @param s2
      * @return
@@ -31,7 +33,28 @@ public class AnagramServiceImpl implements AnagramService {
     }
 
     @Override
-    public List<String> getAllAnagramStrings(String s1) {
-        return null;
+    public Set<String> getAllAnagramStrings(String s1) {
+        Set<String> allAnagrams = new HashSet<>();
+        permutation("", s1, allAnagrams);
+        // Remove original string
+        allAnagrams.remove(s1);
+        return allAnagrams;
+    }
+
+    /**
+     * We are using Set data structure to avoid duplicates
+     * Reference: https://stackoverflow.com/questions/4240080/generating-all-permutations-of-a-given-string
+     *
+     * @param prefix
+     * @param str
+     * @param allAnagrams
+     */
+    private void permutation(String prefix, String str, Set<String> allAnagrams) {
+        int n = str.length();
+        if (n == 0) allAnagrams.add(prefix);
+        else {
+            for (int i = 0; i < n; i++)
+                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n), allAnagrams);
+        }
     }
 }
