@@ -1,6 +1,7 @@
 package com.test.anagrams.service;
 
 import com.google.common.collect.Sets;
+import com.test.anagrams.utility.TestUtility;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,7 +57,7 @@ public class AnagramServiceImplTest {
         String s1 = "a";
         Set<String> s1_expected_anagrams = Sets.newHashSet();
         Set<String> s1_actual_anagrams = anagramService.getAllAnagramStrings(s1);
-        assertTrue(isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string length of 1");
+        assertTrue(TestUtility.isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string length of 1");
     }
 
     @Test
@@ -65,7 +66,7 @@ public class AnagramServiceImplTest {
         String s1 = "ab";
         Set<String> s1_expected_anagrams = Sets.newHashSet("ba");
         Set<String> s1_actual_anagrams = anagramService.getAllAnagramStrings(s1);
-        assertTrue(isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string length of 2");
+        assertTrue(TestUtility.isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string length of 2");
     }
 
     @Test
@@ -74,7 +75,7 @@ public class AnagramServiceImplTest {
         String s1 = "abc";
         Set<String> s1_expected_anagrams = Sets.newHashSet("acb", "bac", "bca", "cab", "cba");
         Set<String> s1_actual_anagrams = anagramService.getAllAnagramStrings(s1);
-        assertTrue(isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string length of 3");
+        assertTrue(TestUtility.isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string length of 3");
     }
 
     @Test
@@ -83,25 +84,8 @@ public class AnagramServiceImplTest {
         String s1 = "aba";
         Set<String> s1_expected_anagrams = Sets.newHashSet("baa", "aab");
         Set<String> s1_actual_anagrams = anagramService.getAllAnagramStrings(s1);
-        assertTrue(isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string with duplicate character");
+        assertTrue(TestUtility.isEqualSet(s1_actual_anagrams, s1_expected_anagrams), "Correct anagrams for string with duplicate character");
     }
 
-    /**
-     * Reference: https://mkyong.com/java/java-how-to-compare-two-sets/
-     *
-     * @param set1
-     * @param set2
-     * @return
-     */
-    boolean isEqualSet(Set<String> set1, Set<String> set2) {
-        if (set1 == null || set2 == null) {
-            return false;
-        }
 
-        if (set1.size() != set2.size()) {
-            return false;
-        }
-
-        return set1.containsAll(set2);
-    }
 }
