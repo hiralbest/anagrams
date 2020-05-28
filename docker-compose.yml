@@ -1,0 +1,6 @@
+version: '3.0'
+services:
+  anagramsapp:
+    image: hiralbest/anagrams:production
+    ports:
+      - "8080:8080"
