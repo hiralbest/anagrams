@@ -4,6 +4,9 @@ This is a spring boot application which has following 2 endpoints.
 GET /anagrams/{s1} : Returns all possible anagrams of the string.   
 GET /anagrams/{s1}/{s2} : Returns true if s1 and s2 is anagram, else return false.   
 
+## Docker Repository
+Docker Repo is [Here](https://hub.docker.com/r/hiralbest/anagrams).
+
 ## Run application using docker image
 Install docker from [here](https://www.docker.com/). 
 ```
